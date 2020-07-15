@@ -1,0 +1,19 @@
+server:
+  port: 8888
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+        # Verify any repository issue in service startup
+          clone-on-start: true
+        # git repo location
+          uri: /Users/suhailnooristani/Documents/development/spring-boot-microservices-course/projects/spring-cloud-config/config-repo
+
+# Disable security for endpoints like /env, /refresh
+management:
+  security:
+    enabled: false
+
+          
