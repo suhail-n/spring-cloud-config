@@ -1,0 +1,28 @@
+version: '2'
+services:
+    configserver:
+        container_name: config-server
+        image: suhailn/config-server:1.0.0
+        environment: 
+            GITHUB_URI: https://github.com/suhail-n/spring-cloud-config.git
+            CONFIG_PATH: config-repo
+        ports: 
+            - 8888:8888
+        networks:
+        - spring-cloud-network
+    configclient:
+        container_name: config-client
+        image: suhailn/config-client:1.0.0
+        environment:
+            URI: http://configserver:8888
+            PROFILE: development
+        ports:
+            - 8080:8080
+        networks:
+        - spring-cloud-network
+        depends_on:
+            - configserver
+
+networks:
+    spring-cloud-network:
+        driver: bridge

@@ -9,9 +9,11 @@ spring:
         # Verify any repository issue in service startup
           clone-on-start: true
         # git repo location
-          uri: https://github.com/suhail-n/spring-cloud-config.git
+          # uri: https://github.com/suhail-n/spring-cloud-config.git
+          uri: ${GITHUB_URI:https://github.com/suhail-n/spring-cloud-config.git}
           search-paths:
-          - config-repo
+          - ${CONFIG_PATH}
+          # - config-repo
 
 # Disable security for endpoints like /env, /refresh
 management:

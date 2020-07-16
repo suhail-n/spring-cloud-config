@@ -1,0 +1,23 @@
+spring:
+  cloud:
+    config:
+      uri:
+      - ${URI}
+      #:http://localhost:8888
+  profiles:
+    active:
+    - ${PROFILE:development}
+  application:
+    name: client
+ 
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - refresh
+  security:
+    enabled: false
+health:
+  config:
+    enabled: false
