@@ -2,7 +2,10 @@ version: '2'
 services:
     configserver:
         container_name: config-server
-        image: suhailn/config-server:1.0.0
+        build:
+            context: server
+            dockerfile: Dockerfile
+        # image: suhailn/config-server:latest
         environment: 
             GITHUB_URI: https://github.com/suhail-n/spring-cloud-config.git
             CONFIG_PATH: config-repo
@@ -12,7 +15,10 @@ services:
         - spring-cloud-network
     configclient:
         container_name: config-client
-        image: suhailn/config-client:1.0.0
+        build: 
+            context: client
+            dockerfile: Dockerfile
+        # image: suhailn/config-client:latest
         environment:
             URI: http://configserver:8888
             PROFILE: development
